@@ -1,0 +1,2 @@
+requests>=1.2.0
+futures>=2.1.3
