@@ -36,6 +36,9 @@ def process_commands(event):
         print(event['body']['message'])
         if 'location' in event['body']['message']:
             weather = get_weather(message.location)
+            weatherMessage = get_weather_message(weather)
+            task = bot.reply_to(message, weatherMessage)
+
             task = bot.reply_to(message, ("""Looks like everything's going to be a nice and cool {temp} with a min-max of {min}-{max} celcius and a relative humidity of {rh}%.""").format(temp=str(weather['temp']),
                         rh=str(weather['rh']),
                         min=str(weather['min_temp']),
@@ -63,6 +66,35 @@ def get_weather(location):
             'rh': rh, 'cloudy': cloudy}
     return result
 
+def get_weather_message(weather):
+    min_temp = weather['min_temp']
+    max_temp = weather['max_temp']
+    rh = weather['rh']
+    temp = weather['temp']
+
+    deviateMessage = tempDeviate(min_temp, max_temp)
+    temperatureMessage = tempVerdict(temp)
+
+    return "{deviateMessage}{temperatureMessage} with a relative huminity of {rh}.".format(deviateMessage=str(deviateMessage),
+                    temperatureMessage=str(temperatureMessage), 
+                    rh=str(rh))
+
+
+def tempDeviate(min_temp, max_temp):
+    if (max_temp - min_temp >= 5):
+        return "The weather might fluctuate a little between {min_temp} and {max_temp}. Prepare for the worst! ".format(min_temp=str(min_temp),max_temp=str(max_temp), temp=str(temp))
+    else:
+        return ""
+
+def tempVerdict(temp):
+    if (temp < 6):
+        return "It is going to freezing cold today around {temp}.".format(temp=str(temp))
+    elif (6 <= temp <= 12):
+        return "It be a bit a little chilly today around {temp}.".format(temp=str(temp))
+    elif (12 < temp<= 28):
+        return "It is going to be cool and comfortable today around {temp}.".format(temp=str(temp))
+    else:
+        return "It is going to be warm and hot around {temp}".format(temp=str(temp))
 
 #      @bot.message_handler(commands=['start', 'help'])
 #      def send_welcome(message):

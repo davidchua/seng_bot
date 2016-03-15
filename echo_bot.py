@@ -2,7 +2,7 @@ import telebot
 import requests
 import json
 
-bot = telebot.TeleBot('115074314:AAEFfQ3zBcFOhcGqE_K1H0pfxdUeRVPy0zc')
+bot = telebot.TeleBot('180585798:AAFmLPn8yupJ--M9_i7bqdyYve0gTFPvvbw')
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
         bot.reply_to(message, "Howdy, how are you doing?")
@@ -18,7 +18,13 @@ def printout(message):
     temp = j['main']['temp'] - 273.15
     rh = j['main']['humidity']
     cloudy = j['clouds']['all']
-    bot.reply_to(message, "Looks like everything's going to be a nice and cool {temp} with a relative huminity of {rh}.".format(temp=str(temp), rh=str(rh)))
+
+    deviateMessage = tempDeviate(min_temp, max_temp)
+    temperatureMessage = tempVerdict(temp)
+
+    bot.reply_to(message, "{deviateMessage}{temperatureMessage} with a relative huminity of {rh}.".format(deviateMessage=str(deviateMessage),
+                    temperatureMessage=str(temperatureMessage), 
+                    rh=str(rh)))
 
 
     #bot.reply_to(message, "Lat Long" + str(message.location.longitude) + ":" +
@@ -32,5 +38,21 @@ def nope(message):
 #   @bot.message_handler(func=lambda m: True)
 #   def echo_all(message):
 #           bot.reply_to(message, message.text)
+
+def tempDeviate(min_temp, max_temp):
+    if (max_temp - min_temp >= 5):
+        return "The weather might fluctuate a little between {min_temp} and {max_temp}. Prepare for the worst! ".format(min_temp=str(min_temp),max_temp=str(max_temp), temp=str(temp))
+    else:
+        return ""
+
+def tempVerdict(temp):
+    if (temp < 6):
+        return "It is going to freezing cold today around {temp}.".format(temp=str(temp))
+    elif (6 <= temp <= 12):
+        return "It be a bit a little chilly today around {temp}.".format(temp=str(temp))
+    elif (12 < temp<= 28):
+        return "It is going to be cool and comfortable today around {temp}.".format(temp=str(temp))
+    else:
+        return "It is going to be warm and hot around {temp}".format(temp=str(temp))
 
 bot.polling()
