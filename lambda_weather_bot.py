@@ -72,15 +72,15 @@ def get_weather_message(weather):
     rh = weather['rh']
     temp = weather['temp']
 
-    deviateMessage = tempDeviate(min_temp, max_temp)
+    deviateMessage = tempDeviate(min_temp, max_temp, temp)
     temperatureMessage = tempVerdict(temp)
 
-    return "{deviateMessage}{temperatureMessage} with a relative huminity of {rh}.".format(deviateMessage=str(deviateMessage),
+    return "{deviateMessage}{temperatureMessage} with a relative humidity of {rh}.".format(deviateMessage=str(deviateMessage),
                     temperatureMessage=str(temperatureMessage), 
                     rh=str(rh))
 
 
-def tempDeviate(min_temp, max_temp):
+def tempDeviate(min_temp, max_temp, temp):
     if (max_temp - min_temp >= 5):
         return "The weather might fluctuate a little between {min_temp} and {max_temp}. Prepare for the worst! ".format(min_temp=str(min_temp),max_temp=str(max_temp), temp=str(temp))
     else:
