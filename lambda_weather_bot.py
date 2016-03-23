@@ -39,11 +39,11 @@ def process_commands(event):
             weatherMessage = get_weather_message(weather)
             task = bot.reply_to(message, weatherMessage)
 
-            task = bot.reply_to(message, ("""Looks like everything's going to be a nice and cool {temp} with a min-max of {min}-{max} celcius and a relative humidity of {rh}%.""").format(temp=str(weather['temp']),
-                        rh=str(weather['rh']),
-                        min=str(weather['min_temp']),
-                        max=str(weather['max_temp'])
-                        ))
+#           task = bot.reply_to(message, ("""Looks like everything's going to be a nice and cool {temp} with a min-max of {min}-{max} celcius and a relative humidity of {rh}%.""").format(temp=str(weather['temp']),
+#                       rh=str(weather['rh']),
+#                       min=str(weather['min_temp']),
+#                       max=str(weather['max_temp'])
+#                       ))
             result = task.wait()
 #            task = bot.reply_to(message, "dude, don't send me a location!")
        # else:
