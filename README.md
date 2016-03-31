@@ -77,8 +77,8 @@ I'd like this bot to be a community bot so if you have any cool stuff you'd like
 
 ### Contributors
 
-* Phang Chun Rong
-* David Chua
+* [Phang Chun Rong](https://github.com/crphang)
+* [David Chua](https://github.com/davidchua)
 
 ### Shoutouts
 
