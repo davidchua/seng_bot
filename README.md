@@ -61,6 +61,13 @@ I'd like this bot to be a community bot so if you have any cool stuff you'd like
 
 ![Screenshot](https://cloud.githubusercontent.com/assets/68039/14183524/57066664-f7a3-11e5-88fd-9d1c517c6e77.png)
 
+### Data Sources
+
+* [Data.gov.sg Dengue Cluster KML](https://data.gov.sg/dataset/dengue-clusters)
+* [Openweathermap.org API](http://openweathermap.org/)
+
 ### Reference Guide
+
+[Converting KML into GeoJSON for Mongoimport](http://dchua.com/2016/03/31/converting-kml-into-geojson-for-mongoimport/)
 
 [Writing a Serverless Python Microservice with AWS Lambda and AWS API Gateway](http://dchua.com/2016/03/22/writing-a-serverless-python-microservice-with-aws-lambda-and-aws-api-gateway/)
