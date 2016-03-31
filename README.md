@@ -65,6 +65,7 @@ I'd like this bot to be a community bot so if you have any cool stuff you'd like
 
 * [Data.gov.sg Dengue Cluster KML](https://data.gov.sg/dataset/dengue-clusters)
 * [Openweathermap.org API](http://openweathermap.org/)
+* David Chua's Dengue API (will write a post about it soon!)
 
 ### Reference Guide
 
