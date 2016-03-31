@@ -60,3 +60,7 @@ I'd like this bot to be a community bot so if you have any cool stuff you'd like
 @seng_bot currently only listens for Location messages. To test out his ability, share your location with the bot and he will return information like the following:
 
 ![Screenshot](https://cloud.githubusercontent.com/assets/68039/14183524/57066664-f7a3-11e5-88fd-9d1c517c6e77.png)
+
+### Reference Guide
+
+[Writing a Serverless Python Microservice with AWS Lambda and AWS API Gateway](http://dchua.com/2016/03/22/writing-a-serverless-python-microservice-with-aws-lambda-and-aws-api-gateway/)
