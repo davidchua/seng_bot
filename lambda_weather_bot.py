@@ -1,12 +1,23 @@
 from __future__ import print_function
 import telebot
 import httplib,urllib
+import math
 import requests
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
 from telebot import types
-from requests_futures.sessions import FuturesSession
+# from requests_futures.sessions import FuturesSession
 import json
 
-bot = telebot.AsyncTeleBot('115074314:AAEFfQ3zBcFOhcGqE_K1H0pfxdUeRVPy0zc')
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+telegram_api_key = os.environ.get("TELEGRAM_API_KEY")
+print("TELEGRAMMMM")
+print(telegram_api_key)
+bot = telebot.AsyncTeleBot(telegram_api_key)
 
 def lambda_handler(event, context):
     """docstring for lambda_handler(event, context)"""
@@ -16,7 +27,6 @@ def lambda_handler(event, context):
 #   result = task.wait()
 #   session = FuturesSession()
 #   session.post("http://telegram-dchua.pagekite.me/api/lambda", data)
-#    requests.post("https://api.telegram.org/bot115074314:AAEFfQ3zBcFOhcGqE_K1H0pfxdUeRVPy0zc/sendMessage",data)
     process_commands(event)
         #    key = event['key1']
         #    return json
@@ -38,6 +48,14 @@ def process_commands(event):
             weather = get_weather(message.location)
             weatherMessage = get_weather_message(weather)
             task = bot.reply_to(message, weatherMessage)
+            location = message.location
+            result = requests.get("https://dengue-dchua.pagekite.me/near?lat={lat}&lng={lng}".format(lat=location.latitude,
+            lng=location.longitude)).json()
+            dengueMessage = get_dengue_message(result)
+            print(result)
+            task.wait()
+            task = bot.reply_to(message, dengueMessage)
+            task.wait()
 
 #           task = bot.reply_to(message, ("""Looks like everything's going to be a nice and cool {temp} with a min-max of {min}-{max} celcius and a relative humidity of {rh}%.""").format(temp=str(weather['temp']),
 #                       rh=str(weather['rh']),
@@ -49,7 +67,6 @@ def process_commands(event):
        # else:
             #task =  bot.send_message('-139342007', message.text)
         return event
-
 
 
 def get_weather(location):
@@ -65,6 +82,14 @@ def get_weather(location):
     result = {'max_temp': max_temp, 'min_temp': min_temp, 'temp': temp,
             'rh': rh, 'cloudy': cloudy}
     return result
+
+def get_dengue_message(dengue):
+    cases = dengue['cases']
+    distance = math.ceil(dengue['distance_in_meters'])
+    description = dengue['description']
+    return "There are {cases} cases of dengue within {distance} meters from you."\
+    "The cluster where it's happening is in {description}".format(cases=cases,
+            distance=distance, description=description)
 
 def get_weather_message(weather):
     min_temp = weather['min_temp']
