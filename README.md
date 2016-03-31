@@ -1,6 +1,6 @@
 # @seng_bot source code
 
-This is the source code to @seng_bot, a Telegram Bot that is hosted on AWS Lambda and Amazon API Gateway.
+This is the source code to [@seng_bot](https://telegram.me/seng_bot), an active Telegram Bot that is hosted on AWS Lambda and Amazon API Gateway.
 
 Its current functions are to:
 
