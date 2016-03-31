@@ -73,3 +73,8 @@ I'd like this bot to be a community bot so if you have any cool stuff you'd like
 [Writing a Serverless Python Microservice with AWS Lambda and AWS API Gateway](http://dchua.com/2016/03/22/writing-a-serverless-python-microservice-with-aws-lambda-and-aws-api-gateway/)
 
 [Siawyoung for letting us use his Profile Pic](github.com/siawyoung)
+
+### Shoutouts
+
+* Singapore Python User Group
+* [Siawyoung](https://twitter.com/siawyoung)
