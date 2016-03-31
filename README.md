@@ -74,6 +74,11 @@ I'd like this bot to be a community bot so if you have any cool stuff you'd like
 
 [Siawyoung for letting us use his Profile Pic](github.com/siawyoung)
 
+### Contributors
+
+* Phang Chun Rong
+* David Chua
+
 ### Shoutouts
 
 * Singapore Python User Group
